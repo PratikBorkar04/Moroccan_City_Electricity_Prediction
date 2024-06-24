@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electricity Consumption Prediction</title>
+</head>
+<body>
+    <h1>Electricity Consumption Prediction</h1>
+    <form action="/predict" method="post">
+        <label for="Temperature">Temperature:</label>
+        <input type="number" id="Temperature" name="Temperature" step="any" required><br><br>
+
+        <label for="Humidity">Humidity:</label>
+        <input type="number" id="Humidity" name="Humidity" step="any" required><br><br>
+
+        <label for="WindSpeed">Wind Speed:</label>
+        <input type="number" id="WindSpeed" name="WindSpeed" step="any" required><br><br>
+
+        <label for="GeneralDiffuseFlows">General Diffuse Flows:</label>
+        <input type="number" id="GeneralDiffuseFlows" name="GeneralDiffuseFlows" step="any" required><br><br>
+
+        <label for="DiffuseFlows">Diffuse Flows:</label>
+        <input type="number" id="DiffuseFlows" name="DiffuseFlows" step="any" required><br><br>
+
+        <label for="PowerConsumption_Zone1">Power Consumption Zone 1:</label>
+        <input type="number" id="PowerConsumption_Zone1" name="PowerConsumption_Zone1" step="any" required><br><br>
+
+        <label for="PowerConsumption_Zone2">Power Consumption Zone 2:</label>
+        <input type="number" id="PowerConsumption_Zone2" name="PowerConsumption_Zone2" step="any" required><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    <div class="prediction-container">
+        {% if prediction %}
+        <h2>Predicted Electricity Consumption: {{ prediction }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
