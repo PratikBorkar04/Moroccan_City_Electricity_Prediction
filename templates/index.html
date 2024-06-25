@@ -1,39 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electricity Consumption Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("static/images.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 700;
+            font-size: 32px;
+        }
+        form {
+            display: grid;
+            gap: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+            text-align: left;
+            font-size: 16px;
+        }
+        input[type="number"] {
+            padding: 12px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #4eade6;
+        }
+        input[type="submit"] {
+            padding: 12px 40px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .prediction-container {
+            margin-top: 30px;
+        }
+        .prediction-container h2 {
+            color: #333;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .prediction-container p {
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Electricity Consumption Prediction</h1>
-    <form action="/predict" method="post">
-        <label for="Temperature">Temperature:</label>
-        <input type="number" id="Temperature" name="Temperature" step="any" required><br><br>
+    <div class="container">
+        <h1>Moroccan City Electricity Prediction </h1>
+        <form action="/predict" method="post">
+            <label for="Temperature">Temperature (°C):</label>
+            <input type="number" id="Temperature" name="Temperature" step="any" required>
 
-        <label for="Humidity">Humidity:</label>
-        <input type="number" id="Humidity" name="Humidity" step="any" required><br><br>
+            <label for="Humidity">Humidity (%):</label>
+            <input type="number" id="Humidity" name="Humidity" step="any" required>
 
-        <label for="WindSpeed">Wind Speed:</label>
-        <input type="number" id="WindSpeed" name="WindSpeed" step="any" required><br><br>
+            <label for="WindSpeed">Wind Speed (km/h):</label>
+            <input type="number" id="WindSpeed" name="WindSpeed" step="any" required>
 
-        <label for="GeneralDiffuseFlows">General Diffuse Flows:</label>
-        <input type="number" id="GeneralDiffuseFlows" name="GeneralDiffuseFlows" step="any" required><br><br>
+            <label for="GeneralDiffuseFlows">General Diffuse Flows (L/min):</label>
+            <input type="number" id="GeneralDiffuseFlows" name="GeneralDiffuseFlows" step="any" required>
 
-        <label for="DiffuseFlows">Diffuse Flows:</label>
-        <input type="number" id="DiffuseFlows" name="DiffuseFlows" step="any" required><br><br>
+            <label for="DiffuseFlows">Diffuse Flows (L/min):</label>
+            <input type="number" id="DiffuseFlows" name="DiffuseFlows" step="any" required>
 
-        <label for="PowerConsumption_Zone1">Power Consumption Zone 1:</label>
-        <input type="number" id="PowerConsumption_Zone1" name="PowerConsumption_Zone1" step="any" required><br><br>
+            <label for="PowerConsumption_Zone1">Power Consumption Zone 1 (kWh):</label>
+            <input type="number" id="PowerConsumption_Zone1" name="PowerConsumption_Zone1" step="any" required>
 
-        <label for="PowerConsumption_Zone2">Power Consumption Zone 2:</label>
-        <input type="number" id="PowerConsumption_Zone2" name="PowerConsumption_Zone2" step="any" required><br><br>
+            <label for="PowerConsumption_Zone2">Power Consumption Zone 2 (kWh):</label>
+            <input type="number" id="PowerConsumption_Zone2" name="PowerConsumption_Zone2" step="any" required>
 
-        <input type="submit" value="Predict">
-    </form>
+            <input type="submit" value="Predict">
+        </form>
 
-    <div class="prediction-container">
-        {% if prediction %}
-        <h2>Predicted Electricity Consumption: {{ prediction }}</h2>
-        {% endif %}
+        <div class="prediction-container">
+            {% if prediction %}
+            <h2>Predicted Electricity Consumption:</h2>
+            <p>{{ prediction }} kWh</p>
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>
